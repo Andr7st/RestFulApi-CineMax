@@ -7,11 +7,19 @@ Creación de API REST backend con relaciones de entidades, base de datos Mysql.
 
 ---
 
-Hi, guys
+Administración cine
+
+## Relaciones de tablas
+
+<p align="center">
+ <img src="./devheroes-project/db_relations.png" />
+</p>
 
 ---
 
 ## Participantes
+
+Grupo 8
 
 [__@Andy__](https://github.com/AndyOlguin/) -
 [__@Andr7st__](https://github.com/Andr7st/)
