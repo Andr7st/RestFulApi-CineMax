@@ -1,13 +1,11 @@
 package com.exe.CineMax.controllers;
 
-import com.exe.CineMax.repositories.PeliculaEntity;
 import com.exe.CineMax.models.PeliculaDTO;
 import com.exe.CineMax.services.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pelicula")
@@ -22,20 +20,20 @@ public class PeliculaController {
     }
 
     @GetMapping("/{idPelicula}")
-    public Optional<PeliculaEntity> buscarPelicula(@PathVariable int idPelicula){
+    public PeliculaDTO buscarPelicula(@PathVariable int idPelicula){
         return ps.getPelicula(idPelicula);
     }
 
     @PostMapping
-    public PeliculaEntity agregarPelicula(@RequestBody PeliculaEntity peliculaEntity){
+    public PeliculaDTO agregarPelicula(@RequestBody PeliculaDTO peliculaDTO){
 
-        return ps.agregarPelicula(peliculaEntity);
+        return ps.agregarPelicula(peliculaDTO);
+
     }
-
     @PutMapping
-    public void modificarPelicula(@RequestBody PeliculaEntity peliculaEntity){
+    public PeliculaDTO modificarPelicula(@RequestBody PeliculaDTO peliculaDTO){
 
-        ps.modificarPelicula(peliculaEntity);
+        return ps.modificarPelicula(peliculaDTO);
     }
 
     @DeleteMapping("/{idPelicula}")

@@ -1,10 +1,10 @@
 package com.exe.CineMax.services;
 
-import com.exe.CineMax.repositories.FuncionEntity;
-import com.exe.CineMax.repositories.PeliculaEntity;
-import com.exe.CineMax.models.FuncionDTO2;
+import com.exe.CineMax.models.FuncionDTO;
+import com.exe.CineMax.persistence.entities.FuncionEntity;
+import com.exe.CineMax.persistence.entities.PeliculaEntity;
 import com.exe.CineMax.models.PeliculaDTO;
-import com.exe.CineMax.repositories.PeliculaRepository;
+import com.exe.CineMax.persistence.repositories.PeliculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,49 +21,95 @@ public class PeliculaServiceImpl implements PeliculaService{
 
     @Override
     public List<PeliculaDTO> getListaPeliculas() {
-        List<PeliculaEntity> peliculaEntityEntidad = pr.findAll();
+        List<PeliculaEntity> peliculaEntidad = pr.findAll();
         List<PeliculaDTO> listaPeliculas = new ArrayList<>();
 
-        for (PeliculaEntity p: peliculaEntityEntidad){
-            PeliculaDTO pDto = new PeliculaDTO();
-            pDto.setIdPelicula(p.getIdPelicula());
-            pDto.setTitulo(p.getTitulo());
-            pDto.setDuracion(p.getDuracion());
-            pDto.setGenero(p.getGenero());
-            pDto.setEstreno(p.getEstreno());
+        for (PeliculaEntity p: peliculaEntidad){
+            PeliculaDTO pDTO = new PeliculaDTO();
+            pDTO.setIdPelicula(p.getIdPelicula());
+            pDTO.setTitulo(p.getTitulo());
+            pDTO.setDuracion(p.getDuracion());
+            pDTO.setGenero(p.getGenero());
+            pDTO.setEstreno(p.getEstreno());
                 for (FuncionEntity fun:p.getListaFuncionEntity()) {
-                    FuncionDTO2 fDTO = new FuncionDTO2();
+                    FuncionDTO fDTO = new FuncionDTO();
                     fDTO.setIdFuncion(fun.getIdFuncion());
                     fDTO.setFechaFuncion(fun.getFechaFuncion());
                     fDTO.setHoraFuncion(fun.getHoraFuncion());
                     //fDTO.setNombrePeli(p.getTitulo());
-                    pDto.getListaFuncion().add(fDTO);
+                    pDTO.getListaFuncion().add(fDTO);
             }
 
-            listaPeliculas.add(pDto);
+            listaPeliculas.add(pDTO);
         }
         return listaPeliculas;
     }
 
     @Override
-    public Optional getPelicula(int id) {
+    public PeliculaDTO getPelicula(int id) {
 
-        Optional<PeliculaEntity> miOp = pr.findById(id);
+       Optional<PeliculaEntity> miOp = pr.findById(id);
 
-        return miOp;
+       if (miOp.isPresent()){
+           PeliculaEntity pe = miOp.get();
+           PeliculaDTO peliculaEncontrada = new PeliculaDTO();
+           peliculaEncontrada.setIdPelicula(pe.getIdPelicula());
+           peliculaEncontrada.setTitulo(pe.getTitulo());
+           peliculaEncontrada.setGenero(pe.getGenero());
+           peliculaEncontrada.setEstreno(pe.getEstreno());
+           peliculaEncontrada.setDuracion(pe.getDuracion());
+            for (FuncionEntity fun:pe.getListaFuncionEntity()) {
+                FuncionDTO fDTO = new FuncionDTO();
+                fDTO.setIdFuncion(fun.getIdFuncion());
+                fDTO.setFechaFuncion(fun.getFechaFuncion());
+                fDTO.setHoraFuncion(fun.getHoraFuncion());
+                peliculaEncontrada.getListaFuncion().add(fDTO);
+            }
+
+
+           return peliculaEncontrada;
+       }
+
+       // peliculaEncontrada.setIdPelicula(miOp.get);
+
+        return null;
     }
 
     @Override
-    public PeliculaEntity agregarPelicula(PeliculaEntity peliculaEntity) {
+    public PeliculaDTO agregarPelicula(PeliculaDTO peliculaDTO) {
 
-        return pr.save(peliculaEntity);
+       PeliculaEntity peliculaEntidad = new PeliculaEntity();
+       peliculaEntidad.setDuracion(peliculaDTO.getDuracion());
+       peliculaEntidad.setEstreno(peliculaDTO.getEstreno());
+       peliculaEntidad.setGenero(peliculaDTO.getGenero());
+       peliculaEntidad.setTitulo(peliculaDTO.getTitulo());
+         for (FuncionDTO funcion:peliculaDTO.getListaFuncion()) {
+            FuncionEntity funcionEntidad = new FuncionEntity();
+            funcionEntidad.setIdFuncion(funcion.getIdFuncion());
+            //funcionEntidad.setFechaFuncion(funcion.getFechaFuncion());
+            //funcionEntidad.setHoraFuncion(funcion.getHoraFuncion());
+            peliculaEntidad.getListaFuncionEntity().add(funcionEntidad);
+            
+        }
+        System.out.println(peliculaEntidad.toString());
+       pr.save(peliculaEntidad);
+
+       peliculaDTO.setIdPelicula(peliculaEntidad.getIdPelicula());
+
+       return peliculaDTO;
 
     }
 
     @Override
-    public void modificarPelicula(PeliculaEntity peliculaEntity) {
+    public PeliculaDTO modificarPelicula(PeliculaDTO peliculaDTO) {
 
-        Optional<PeliculaEntity> miOp = pr.findById(peliculaEntity.getIdPelicula());
+        PeliculaEntity peliculaEntidad = new PeliculaEntity();
+        peliculaEntidad.setIdPelicula(peliculaDTO.getIdPelicula());
+        peliculaEntidad.setTitulo(peliculaDTO.getTitulo());
+        peliculaEntidad.setDuracion(peliculaDTO.getDuracion());
+        peliculaEntidad.setGenero(peliculaDTO.getGenero());
+        peliculaEntidad.setEstreno(peliculaDTO.getEstreno());
+        Optional<PeliculaEntity> miOp = pr.findById(peliculaEntidad.getIdPelicula());
 
         if(miOp.isPresent()){
             /*Pelicula peliculaEncontrada = miOp.get();
@@ -73,8 +119,9 @@ public class PeliculaServiceImpl implements PeliculaService{
             peliculaEncontrada.setGenero(pelicula.getGenero());
             */
 
-            pr.save(peliculaEntity);
+            pr.save(peliculaEntidad);
         }
+        return peliculaDTO;
     }
 
     @Override

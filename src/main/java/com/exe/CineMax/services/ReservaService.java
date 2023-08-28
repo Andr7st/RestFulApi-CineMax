@@ -1,6 +1,6 @@
 package com.exe.CineMax.services;
 
-import com.exe.CineMax.repositories.ReservaEntity;
+import com.exe.CineMax.persistence.entities.ReservaEntity;
 
 import java.util.List;
 import java.util.Optional;

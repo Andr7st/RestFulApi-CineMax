@@ -1,6 +1,6 @@
 package com.exe.CineMax.services;
 
-import com.exe.CineMax.repositories.UsuarioEntity;
+import com.exe.CineMax.persistence.entities.UsuarioEntity;
 
 import java.util.List;
 import java.util.Optional;

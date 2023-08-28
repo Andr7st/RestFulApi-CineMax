@@ -1,6 +1,6 @@
 package com.exe.CineMax.controllers;
 
-import com.exe.CineMax.repositories.FuncionEntity;
+import com.exe.CineMax.persistence.entities.FuncionEntity;
 import com.exe.CineMax.models.FuncionDTO;
 import com.exe.CineMax.services.FuncionService;
 import org.springframework.beans.factory.annotation.Autowired;

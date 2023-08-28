@@ -1,7 +1,7 @@
 package com.exe.CineMax.services;
 
-import com.exe.CineMax.repositories.ReservaEntity;
-import com.exe.CineMax.repositories.ReservaRepository;
+import com.exe.CineMax.persistence.entities.ReservaEntity;
+import com.exe.CineMax.persistence.repositories.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class ReservaServiceImpl implements ReservaService{
 
     @Override
     public ReservaEntity agregarReserva(ReservaEntity reservaEntity) {
-        return null;
+        return rr.save(reservaEntity);
     }
 
     @Override
