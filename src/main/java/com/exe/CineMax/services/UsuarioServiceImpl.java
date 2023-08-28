@@ -1,7 +1,7 @@
 package com.exe.CineMax.services;
 
-import com.exe.CineMax.repositories.UsuarioEntity;
-import com.exe.CineMax.repositories.UsuarioRepository;
+import com.exe.CineMax.persistence.entities.UsuarioEntity;
+import com.exe.CineMax.persistence.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

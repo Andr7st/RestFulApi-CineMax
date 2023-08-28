@@ -1,7 +1,7 @@
 package com.exe.CineMax.services;
 
-import com.exe.CineMax.repositories.SalaEntity;
-import com.exe.CineMax.repositories.SalaRepository;
+import com.exe.CineMax.persistence.entities.SalaEntity;
+import com.exe.CineMax.persistence.repositories.SalaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

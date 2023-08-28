@@ -1,6 +1,6 @@
 package com.exe.CineMax.services;
 
-import com.exe.CineMax.repositories.FuncionEntity;
+import com.exe.CineMax.persistence.entities.FuncionEntity;
 import com.exe.CineMax.models.FuncionDTO;
 
 import java.util.List;

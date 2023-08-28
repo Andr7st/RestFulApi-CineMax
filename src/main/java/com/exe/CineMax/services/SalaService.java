@@ -1,6 +1,6 @@
 package com.exe.CineMax.services;
 
-import com.exe.CineMax.repositories.SalaEntity;
+import com.exe.CineMax.persistence.entities.SalaEntity;
 
 import java.util.List;
 import java.util.Optional;

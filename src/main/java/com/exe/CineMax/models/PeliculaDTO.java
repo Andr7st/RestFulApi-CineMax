@@ -22,7 +22,7 @@ public class PeliculaDTO {
 
     private int estreno;
 
-    private List<FuncionDTO2> listaFuncion = new ArrayList<>();
+    private List<FuncionDTO> listaFuncion = new ArrayList<>();
 
 
 }

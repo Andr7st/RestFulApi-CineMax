@@ -1,6 +1,6 @@
 package com.exe.CineMax.controllers;
 
-import com.exe.CineMax.repositories.SalaEntity;
+import com.exe.CineMax.persistence.entities.SalaEntity;
 import com.exe.CineMax.services.SalaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

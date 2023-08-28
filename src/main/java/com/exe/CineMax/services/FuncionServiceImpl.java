@@ -1,8 +1,8 @@
 package com.exe.CineMax.services;
 
-import com.exe.CineMax.repositories.FuncionEntity;
+import com.exe.CineMax.persistence.entities.FuncionEntity;
 import com.exe.CineMax.models.FuncionDTO;
-import com.exe.CineMax.repositories.FuncionRepository;
+import com.exe.CineMax.persistence.repositories.FuncionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
