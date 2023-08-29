@@ -1,6 +1,7 @@
 package com.exe.CineMax.services;
 
 import com.exe.CineMax.persistence.entities.ReservaEntity;
+import com.exe.CineMax.persistence.entities.UsuarioEntity;
 import com.exe.CineMax.persistence.repositories.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class ReservaServiceImpl implements ReservaService{
 
     @Override
     public Optional<ReservaEntity> getReserva(int id) {
-        return Optional.empty();
+        return rr.findById(id);
     }
 
     @Override
@@ -29,11 +30,17 @@ public class ReservaServiceImpl implements ReservaService{
 
     @Override
     public void modificarReserva(ReservaEntity reservaEntity) {
+        Optional<ReservaEntity> miOp = rr.findById(reservaEntity.getIdReserva());
 
+        if(miOp.isPresent()){
+            rr.save(reservaEntity);
+        }
     }
 
     @Override
     public void eliminarReserva(int id) {
+
+        rr.findById(id);
 
     }
 }
