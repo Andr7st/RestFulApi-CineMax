@@ -37,7 +37,7 @@ public class UsuarioController {
        us.modificarUsuario(usuarioEntity);
     }
 
-    @DeleteMapping("/{idSala}")
+    @DeleteMapping("/{idUsuario}")
     public void eliminarUsuario(@PathVariable int idUsuario){
         us.eliminarUsuario(idUsuario);
 

@@ -19,21 +19,26 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public Optional<UsuarioEntity> getUsuario(int id) {
-        return Optional.empty();
+        return ur.findById(id);
     }
 
     @Override
     public UsuarioEntity agregarUsuario(UsuarioEntity usuarioEntity) {
-        return null;
+        return ur.save(usuarioEntity);
     }
 
     @Override
     public void modificarUsuario(UsuarioEntity usuarioEntity) {
+        Optional<UsuarioEntity> miOp = ur.findById(usuarioEntity.getIdUsuario());
 
+        if(miOp.isPresent()){
+            ur.save(usuarioEntity);
+        }
     }
 
     @Override
     public void eliminarUsuario(int id) {
 
+        ur.deleteById(id);
     }
 }
