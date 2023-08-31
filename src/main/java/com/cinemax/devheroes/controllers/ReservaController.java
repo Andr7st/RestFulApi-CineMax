@@ -1,0 +1,44 @@
+package com.cinemax.devheroes.controllers;
+
+import com.cinemax.devheroes.services.ReservaService;
+import com.cinemax.devheroes.persistence.entities.ReservaEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@SuppressWarnings("unused")
+@RestController
+@RequestMapping("/api/reserva")
+public class ReservaController {
+
+    @Autowired
+    public ReservaService rs;
+    @GetMapping
+    public List<ReservaEntity> getAll(){
+        return rs.getListaReserva();
+    }
+
+    @GetMapping("{idReserva}")
+    public Optional<ReservaEntity> buscarReserva(@PathVariable int idReserva){
+        return rs.getReserva(idReserva);
+    }
+
+    @PostMapping
+    public ReservaEntity agregarReserva(@RequestBody ReservaEntity reservaEntity){
+        return rs.agregarReserva(reservaEntity);
+    }
+
+    @PutMapping
+    public void modificarReserva(@RequestBody ReservaEntity reservaEntity){
+
+        rs.modificarReserva(reservaEntity);
+    }
+
+    @DeleteMapping("/{idReserva}")
+    public void eliminarReserva(@PathVariable int idReserva){
+        rs.eliminarReserva(idReserva);
+
+    }
+}
