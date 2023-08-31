@@ -9,6 +9,8 @@ Creación de API REST backend con relaciones de entidades, base de datos Mysql.
 
 Administración cine
 
+[__Mockup CineMax PDF__](./devheroes-project/CINEMAX_MOCKUP.pdf)
+
 ## Relaciones de tablas
 
 <p align="center">
